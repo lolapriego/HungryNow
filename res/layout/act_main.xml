@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+     >
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:listSelector="@drawable/list_selector" >
+    </ListView>
+
+    <LinearLayout
+        style="@android:style/ButtonBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white" >
+
+        <Button
+            android:id="@+id/order"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button"
+            android:onClick="onDrawSelectorOnTop"
+            android:text="@string/order"
+            android:textColor="@android:color/white"
+      		android:textSize="16dip"
+      		android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/discard"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:onClick="onUseSelectorAsBackground"
+            android:background="@drawable/blue_button"
+            android:text="@string/discard"
+            android:textColor="@android:color/white"
+      		android:textSize="16dip"
+      		android:textStyle="bold"
+      		android:layout_marginLeft="7dp" />
+    </LinearLayout>
+
+</LinearLayout>

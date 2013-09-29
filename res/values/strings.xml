@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HungryNow</string>
+    <string name="action_settings">Settings</string>
+    <string name="discard">Empty my cart</string>
+    <string name="order">Order now!</string>
+    <string name="title_activity_single">Single</string>
+    <string name="small">Small Size</string>
+    <string name="medium">Medium Size</string>
+    <string name="large">Large Size</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    
+</resources>
