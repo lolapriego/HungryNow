@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class MainActivity extends ListActivity {
 	public static final String ITEM = "Product";
 	public static final String QUANTITY = "Quantity";
+	public static final String TOTALPRICE = "Total";	
 	
 	private Button bCancel;
 	private Button bOrder;
@@ -59,15 +60,17 @@ public class MainActivity extends ListActivity {
     	
     	for(int i = 0; i<mFList.mFood.length; i++){
     		int total = mFList.mFood[i].quantityS + mFList.mFood[i].quantityM + mFList.mFood[i].quantityL;
+    		double totalPrice = mFList.mFood[i].quantityS * mFList.mFood[i].priceS + mFList.mFood[i].quantityM * mFList.mFood[i].priceM + mFList.mFood[i].quantityL * mFList.mFood[i].priceL;
     				
             HashMap<String, String> map = new HashMap<String, String>();
             map.put(ITEM, mFList.mFood[i].name);
-            map.put(QUANTITY, Integer.toString(total));
+            map.put(QUANTITY, "Quantity " + Integer.toString(total));
+            map.put(TOTALPRICE, "Price: " + Double.toString(totalPrice) + " $");
             
     		mList.add(map);
     	}
     	
-    	ListAdapter adapter = new SimpleAdapter(this, mList, R.layout.row, new String[] { ITEM, QUANTITY }, new int[] { R.id.item, R.id.quantity });
+    	ListAdapter adapter = new SimpleAdapter(this, mList, R.layout.row, new String[] { ITEM, QUANTITY, TOTALPRICE }, new int[] { R.id.item, R.id.quantity, R.id.total_price });
 
     	setListAdapter(adapter);
     }

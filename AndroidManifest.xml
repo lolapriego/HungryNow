@@ -26,6 +26,10 @@
             android:name="com.example.hungrynow.Single"
             android:label="@string/title_activity_single" >
         </activity>
+        <activity
+            android:name="com.example.hungrynow.InfoActivity"
+            android:label="@string/title_activity_info" >
+        </activity>
     </application>
 
 </manifest>

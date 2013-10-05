@@ -11,5 +11,7 @@
     <string name="large">Large Size</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    
+    <string name="title_activity_info">Info</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
