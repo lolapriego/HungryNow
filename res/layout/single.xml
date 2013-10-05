@@ -5,16 +5,34 @@
     android:orientation="vertical"
     android:paddingBottom="15dip"
     android:paddingTop="15dip" >
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="7dp"
-        android:layout_weight="0.75"
         android:text="NO TEXT"
         android:textSize="35dip"
         android:textStyle="bold" />
+      <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_button"
+            android:onClick="onUseSelectorAsBackground"
+            android:layout_marginLeft="50dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/info"
+            android:textColor="@android:color/white"
+            android:textSize="16dip"
+            android:textStyle="bold" />
+      </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

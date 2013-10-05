@@ -11,4 +11,9 @@
     <string name="large">Tamaño Grande</string>
     <string name="cancel">Cancelar</string>
     <string name="save">Ok</string>    
+    <string name="title_activity_info">Info</string>
+    <string name="ginos">Ginos</string>
+    <string name="address">Dirección</string>
+    <string name="email">Email</string>
+    <string name="number">Teléfono</string>
 </resources>
