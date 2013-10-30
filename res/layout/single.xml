@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.75"
+        android:layout_weight="0.75">
 
     <TextView
         android:id="@+id/name"
@@ -21,10 +21,10 @@
         android:textSize="35dip"
         android:textStyle="bold" />
       <Button
-            android:id="@+id/cancel"
+            android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/blue_button"
+            android:background="@drawable/green_button"
             android:onClick="onUseSelectorAsBackground"
             android:layout_marginLeft="50dp"
             android:layout_alignParentRight="true"
@@ -52,9 +52,9 @@
             android:textStyle="bold" >
             
           <TextView 
-              android:layout_width="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-              android:text="@string/small"
+            android:text="@string/small"
             android:textColor="#2f6699"
             android:textSize="22dp"
             android:textStyle="bold" />

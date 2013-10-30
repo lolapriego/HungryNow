@@ -21,6 +21,7 @@ public class Single extends Activity {
 	private EditText quantS;
 	private EditText quantM;
 	private EditText quantL;
+	private Button bInfo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class Single extends Activity {
 		quantS = (EditText) findViewById(R.id.quantityS);
 		quantM = (EditText) findViewById(R.id.quantityM);
 		quantL = (EditText) findViewById(R.id.quantityL);
+		bInfo = (Button) findViewById(R.id.info);
 		
 		pName.setText(item.name);
 		priceS.setText(Double.toString(item.priceS) + " $");
@@ -68,14 +70,21 @@ public class Single extends Activity {
             	finish();
             }
         });
-
+        
+		bInfo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            	launcher();
+            }
+        });
+	}
+	
+	private void launcher(){
+        Intent i = new Intent(this, Manager.class);
+        startActivity(i);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.single, menu);
-		return true;
-	}
+
+	
+
 
 }

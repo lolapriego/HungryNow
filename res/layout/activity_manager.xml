@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+            android:background="@android:color/white"
+    android:layout_height="fill_parent">
+        <LinearLayout
+        style="@android:style/ButtonBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:text="View Downloads" android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button"
+            android:textColor="@android:color/white"
+            android:textSize="16dip"
+            android:textStyle="bold"
+            android:onClick="showDownload" />
+
+        <Button
+            android:text="Start Download" android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button"
+            android:onClick="onClick"
+            android:textColor="@android:color/white"
+            android:textSize="16dip"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageView android:layout_height="wrap_content" android:id="@+id/imageView1"
+        android:src="@drawable/blue_button" android:layout_width="wrap_content"></ImageView>
+</LinearLayout>

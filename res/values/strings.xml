@@ -12,10 +12,13 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="title_activity_info">Info</string>
-    <string name="info">Info</string>    
+    <string name="info">Info</string>
     <string name="ginos">Ginos</string>
     <string name="address">Address</string>
     <string name="email">Email</string>
     <string name="number">Contact Number</string>
-    
+    <string name="title_activity_web">Web</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_manager">Manager</string>
+
 </resources>

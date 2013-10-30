@@ -5,12 +5,18 @@ import java.util.HashMap;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -21,9 +27,12 @@ public class MainActivity extends ListActivity {
 	
 	private Button bCancel;
 	private Button bOrder;
+	private TextView number;
 	
 	private mPFood mFList;
 	private int mPosition; //When calling Single Activity, this will be set as the item selected
+	private OrderDbAdapter mDbHelper;
+	private int REQUEST_PICK_CONTACT = 1;
 	
 
     @Override
@@ -35,13 +44,20 @@ public class MainActivity extends ListActivity {
         
         bOrder = (Button) findViewById(R.id.order);
 		bCancel = (Button) findViewById(R.id.discard);
+		number = (TextView) findViewById(R.id.number_order);
+		
+        mDbHelper = new OrderDbAdapter(this);
+        mDbHelper.open();
         
         if(savedInstanceState != null) mFList = (mPFood) savedInstanceState.getParcelable("ORDER");               
         
+
+        number.setText(Integer.toString(mDbHelper.count));
         bOrder.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-            	restart();
-	            Toast.makeText(MainActivity.this, "The Food is on its Way!", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {            	
+            	Intent pickContactIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
+                pickContactIntent.setType(Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
+                startActivityForResult(pickContactIntent, REQUEST_PICK_CONTACT);
             }
         });
         
@@ -108,6 +124,8 @@ public class MainActivity extends ListActivity {
     		mFList.mFood[i].quantityM = 0;
     		mFList.mFood[i].quantityL = 0;
     	}
+        number.setText(Integer.toString(mDbHelper.count));
+
         fillData();
     }
 
@@ -115,11 +133,55 @@ public class MainActivity extends ListActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
        super.onActivityResult(requestCode, resultCode, intent);
        
-       if(resultCode == RESULT_OK) mFList.mFood[mPosition] = intent.getExtras().getParcelable("PRODUCT");
+       if(resultCode == RESULT_OK && requestCode != REQUEST_PICK_CONTACT) {
+    	   mFList.mFood[mPosition] = intent.getExtras().getParcelable("PRODUCT");
+    	   fillData();
+       }
+       
+       else if(requestCode == REQUEST_PICK_CONTACT && intent != null){
+    	   Uri contactUri = intent.getData();
+    	   
+    	   String[] projection = {Phone.NUMBER};
 
-       fillData();
+           // Perform the query on the contact to get the NUMBER column
+           // We don't need a selection or sort order (there's only one result for the given URI)
+           // CAUTION: The query() method should be called from a separate thread to avoid blocking
+           // your app's UI thread. (For simplicity of the sample, this code doesn't do that.)
+           // Consider using CursorLoader to perform the query.
+           Cursor cursor = getContentResolver()
+                   .query(contactUri, projection, null, null, null);
+           cursor.moveToFirst();
+
+           // Retrieve the phone number from the NUMBER column
+           int column = cursor.getColumnIndex(Phone.NUMBER);
+           String number = cursor.getString(column);
+    	   
+    	   mDbHelper.createOrder(mFList, number);
+    	   restart();
+           Toast.makeText(MainActivity.this, "The Food is on its Way!", Toast.LENGTH_SHORT).show();
+       }
     }
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuItem infoMenu = menu.add(0, Menu.FIRST, 0, R.string.info);
+        infoMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        
+		return true;
+	}
+	
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch(item.getItemId()) {
+            case Menu.FIRST:
+                Intent i = new Intent(this, InfoActivity.class);
+                startActivity(i);
+            	return true;
+        }
+
+        return super.onMenuItemSelected(featureId, item);
+    }
 
 
 }

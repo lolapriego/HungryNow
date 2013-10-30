@@ -4,6 +4,9 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
@@ -29,6 +32,14 @@
         <activity
             android:name="com.example.hungrynow.InfoActivity"
             android:label="@string/title_activity_info" >
+        </activity>
+        <activity
+            android:name="com.example.hungrynow.Web"
+            android:label="@string/title_activity_web" >
+        </activity>
+        <activity
+            android:name="com.example.hungrynow.Manager"
+            android:label="@string/title_activity_manager" >
         </activity>
     </application>
 
